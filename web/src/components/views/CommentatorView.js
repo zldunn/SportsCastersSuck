@@ -11,11 +11,46 @@ class CommentatorView extends Component {
       name: "Stephen A Smith",
       hotTakeCount: 12,
       predictionCount: 1,
-      topSport: "basketball"
+      topSport: "basketball",
+      isLoaded: false,
+      itmes: null
     }
   }
 
+  componentDidMount() {
+    console.log("mounted")
+   fetch("http://localhost:5000/sc/stepheb")
+     .then(res => res.json())
+     .then(
+       (result) => {
+         this.setState({
+           isLoaded: true,
+           name: result.name,
+           percent: result.percent,
+           hotTakeCount: result.hotTakeCount,
+           topSport: result.topSport,
+           predictionCount: result.predictionCount
+         });
+       },
+       // Note: it's important to handle errors here
+       // instead of a catch() block so that we don't swallow
+       // exceptions from actual bugs in components.
+       (error) => {
+         this.setState({
+           percent: 55,
+           name: "Stephen A Smith",
+           hotTakeCount: 12,
+           predictionCount: 1,
+           topSport: "basketball",
+           isLoaded: false,
+           itmes: null
+         });
+       }
+     )
+ }
+
   render() {
+    console.log(this.state.items)
     return (
       <div>
         <Header
