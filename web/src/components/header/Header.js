@@ -1,37 +1,29 @@
 import React, { Component } from 'react';
-import logo from './stephenA.jpg';
-import basketball from './basketball.png';
-import './Header.css';
-
-
+import logo from './../../static/stephenA.jpg';
+import basketball from './../../static/basketball.png';
+import './../styleSheet/Header.css';
 
 class Header extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      percent: this.props.percent,
-      name: this.props.name
-    }
-  }
-
   render() {
-    const percent = this.state.percent.toString();
-    const rating_text = percent < "50" ? "Below Average" : "Above Average";
-    const nameBadge = props => <h1>{this.state.name}</h1>;
+    const percent = this.props.percent.toString();
+    const ratingText = percent < "50" ? "Below Average" : "Above Average";
+    const nameBadge = <h1>{this.props.name}</h1>;
+    const hotTakeCount = this.props.hotTakeCount;
+    const predCount = this.props.predictionCount;
 
     return (
       <div className="Header">
         <img src={logo} className="Header-profile-photo" alt="logo" />
         <div className="Header-stats-title">
-          <div className="Header-title"><h1>Stephen A Smith</h1></div>
+          <div className="Header-title">{nameBadge}</div>
           <div className="Header-rating">
-            <Percent percent = "60" />
-            <div className="Header-rating-text">{rating_text}</div>
+            <Percent percent = {percent} />
+            <div className="Header-rating-text">{ratingText}</div>
           </div>
           <div className="Token-container">
-            <Token text="111" title="Prediction Count"/>
-            <Token text="69" title="HotTake Count"/>
+            <Token text={predCount} title="Prediction Count"/>
+            <Token text={hotTakeCount} title="HotTake Count"/>
             <Token icon={basketball} title="Top Sport"/>
           </div>
         </div>
@@ -45,13 +37,12 @@ class Header extends Component {
 class Percent extends Component {
   render() {
     const finalPercent = this.props.percent.toString();
-    const base_diameter = 31.831;
-    const base_radius = 15.9155;
-    const pi_frac = 2.0845;
-    const size = 0.25;
-    const diameter = "M 18 "+ pi_frac+
-      " a " + base_radius*1 +" "+ base_radius + " " + base_radius + "0 0 1 0 " + base_diameter+
-      " a " + base_radius*1 + " " +  base_radius + " " + base_radius + "0 0 1 0 " + -1*base_diameter;
+    const baseDiameter = 31.831;
+    const baseRadius = 15.9155;
+    const piFrac = 2.0845;
+    const diameter = "M 18 "+ piFrac+
+      " a " + baseRadius*1 +" "+ baseRadius + " " + baseRadius + "0 0 1 0 " + baseDiameter+
+      " a " + baseRadius*1 + " " +  baseRadius + " " + baseRadius + "0 0 1 0 " + -1*baseDiameter;
      console.log(diameter)
     return (
       <svg className="circular-chart" viewBox="0 0 36 36">
@@ -75,7 +66,7 @@ class Token extends Component {
       <div>
         <div className="Token">
           {!text ? (
-            <img className ="Token-img" src={icon} />
+            <img className ="Token-img" src={icon} alt="Best sport icon" />
           ): (
             <div className="Token-text">{text}</div>
           )}
