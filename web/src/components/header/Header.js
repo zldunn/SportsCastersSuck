@@ -5,7 +5,7 @@ import './../styleSheet/Header.css';
 
 class Header extends Component {
 
-  
+
 
   render() {
     const percent = this.props.percent.toString();
