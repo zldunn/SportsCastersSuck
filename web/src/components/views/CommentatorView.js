@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Header from './../header/Header';
 import Details from './../header/CommentatorDetails';
 
+const baseURL = "http://localhost:5000/caster/1";
+
 class CommentatorView extends Component {
 
   constructor(props) {
@@ -19,7 +21,8 @@ class CommentatorView extends Component {
 
   componentDidMount() {
     console.log("mounted")
-   fetch("http://localhost:5000/sc/stepheb")
+    console.log(typeof(baseURL))
+   fetch("http://localhost:5000/caster/4")
      .then(res => res.json())
      .then(
        (result) => {
