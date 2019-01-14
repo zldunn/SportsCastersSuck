@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import Header from './../header/Header';
 import Details from './../header/CommentatorDetails';
 
+const baseURL = "http://localhost:5000/caster/";
+
 class CommentatorView extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      percent: 55,
-      name: "Stephen A Smith",
-      hotTakeCount: 12,
-      predictionCount: 1,
+      percent: 23,
+      name: "Constructor",
+      hotTakeCount: 23,
+      predictionCount: 23,
       topSport: "basketball",
       isLoaded: false,
       itmes: null
@@ -18,8 +20,7 @@ class CommentatorView extends Component {
   }
 
   componentDidMount() {
-    console.log("mounted")
-   fetch("http://localhost:5000/sc/stepheb")
+   fetch(baseURL.concat(this.props.id))
      .then(res => res.json())
      .then(
        (result) => {
@@ -38,7 +39,7 @@ class CommentatorView extends Component {
        (error) => {
          this.setState({
            percent: 55,
-           name: "Stephen A Smith",
+           name: "API Error",
            hotTakeCount: 12,
            predictionCount: 1,
            topSport: "basketball",
@@ -59,6 +60,7 @@ class CommentatorView extends Component {
           hotTakeCount={this.state.hotTakeCount}
           predictionCount={this.state.predictionCount}
           topSport={this.state.topSport}
+          id = {this.state.id}
         />
         <Details />
       </div>

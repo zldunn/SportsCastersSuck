@@ -5,7 +5,7 @@ import './../styleSheet/Header.css';
 
 class Header extends Component {
 
-  
+
 
   render() {
     const percent = this.props.percent.toString();
@@ -64,13 +64,14 @@ class Token extends Component {
     const icon = this.props.icon;
     const text = this.props.text ? this.props.text : null;
     const title = this.props.title;
+    const formatted = text > 99 ? "99+" : text;
     return (
       <div>
         <div className="Token">
           {!text ? (
             <img className ="Token-img" src={icon} alt="Best sport icon" />
           ): (
-            <div className="Token-text">{text}</div>
+            <div className="Token-text">{formatted}</div>
           )}
         </div>
         <div className="Token-title">{title}</div>
