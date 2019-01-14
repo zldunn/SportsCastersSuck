@@ -5,6 +5,8 @@ import './../styleSheet/Header.css';
 
 class Header extends Component {
 
+  
+
   render() {
     const percent = this.props.percent.toString();
     const ratingText = percent < "50" ? "Below Average" : "Above Average";
